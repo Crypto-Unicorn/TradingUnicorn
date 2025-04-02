@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS md.candlestick_fx_1m
     low            REAL NOT NULL,
     close          REAL NOT NULL,
     volume         REAL NOT NULL,
-    type           CHAR(1),
     at             TIMESTAMPTZ NOT NULL,
 
     trade_count    INTEGER, -- count of trades within the candlestick
@@ -33,7 +32,6 @@ CREATE TABLE IF NOT EXISTS md.candlestick_fx_1h
     low            REAL NOT NULL,
     close          REAL NOT NULL,
     volume         REAL NOT NULL,
-    type           CHAR(1),
     at             TIMESTAMPTZ NOT NULL,
 
     trade_count    INTEGER,
@@ -54,7 +52,6 @@ CREATE TABLE IF NOT EXISTS md.candlestick_fx_1d
     low            REAL NOT NULL,
     close          REAL NOT NULL,
     volume         REAL NOT NULL,
-    type           CHAR(1),
     at             TIMESTAMPTZ NOT NULL,
 
     trade_count    INTEGER,
@@ -74,7 +71,6 @@ CREATE TABLE IF NOT EXISTS md.order_book_fx
     size           REAL NOT NULL,
     depth          INTEGER NOT NULL,
     side           CHAR(1) NOT NULL,
-    type           CHAR(1),
     at             TIMESTAMPTZ NOT NULL
 );
 CREATE INDEX IF NOT EXISTS ix_order_book_fx__security_fx_id
