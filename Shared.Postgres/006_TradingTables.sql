@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS trading.order
 (
     id              INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     account_id      INTEGER NOT NULL REFERENCES adm.account(id),
-    security_id     INTEGER NOT NULL REFERENCES ref.security(id),
+    security_id     INTEGER NOT NULL REFERENCES ref.v_security(id),
     order_type      VARCHAR(50) NOT NULL, -- MARKET, LIMIT, STOP_LOSS, TAKE_PROFIT, STOP_LOSS_LIMIT, TAKE_PROFIT_LIMIT, LIMIT_MAKER
     time_in_force   VARCHAR(50) NOT NULL, -- GTC, IOC, FOK
     
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS trading.order_detail
     cancel_type      VARCHAR(50), -- ONLY_NEW, ONLY_PARTIALLY_FILLED, ALL, CANCEL_REPLACE
     auto_margin_effect VARCHAR(50), -- NO_SIDE_EFFECT, MARGIN_BUY, AUTO_REPAY, AUTO_BORROW_REPAY
     self_trade_prevention VARCHAR(50), -- EXPIRE_TAKER, EXPIRE_MAKER, EXPIRE_BOTH
-    parent_order_id   INTEGER REFERENCES trading.order(id) -- NULL for parent order
+    parent_order_id   INTEGER REFERENCES trading.order(id), -- NULL for parent order
     parent_order_type VARCHAR(50) -- NULL for child order; OCO, OTO, OTOCO
 );
 
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS trading.fee_detail
     discount_enabled_for_account  BOOLEAN,
     discount_enabled_for_security BOOLEAN,
     discount_asset_id INTEGER REFERENCES ref.asset(id),
-    discount_rate     REAL,
+    discount_rate     REAL
 );
 
 
